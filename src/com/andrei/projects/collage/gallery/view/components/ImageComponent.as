@@ -10,10 +10,13 @@ import org.osflash.signals.Signal;
 
 public class ImageComponent extends Sprite {
 
-    public function ImageComponent(source:IGalleryImage, init:Boolean = true) {
-        image = source;
+    public function ImageComponent() {
+
+    }
+
+    public function init(visible:Boolean = true):void {
         addChild(image.content);
-        if (init) {
+        if (visible) {
             alpha = 0.8;
             x = image.x;
             y = image.y;
@@ -21,6 +24,7 @@ public class ImageComponent extends Sprite {
             alpha = 0;
         }
     }
+
     public var imageSelected:Signal = new Signal(IGalleryImage);
     public var galleryEnabled:Signal = new Signal();
     public var galleryDisabled:Signal = new Signal();

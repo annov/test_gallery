@@ -1,11 +1,12 @@
-/**
- * Created by annov on 24.04.2015.
- */
 package com.andrei.projects.collage.gallery.model.factories {
 import asunit.framework.TestCase;
 
+import com.andrei.projects.collage.gallery.model.vo.Gallery;
+import com.andrei.projects.collage.gallery.model.vo.IGallery;
+
 public class GalleryFactoryTest extends TestCase {
     protected var instance:GalleryFactory;
+    protected static const GALLERY:IGallery = new Gallery();
     public function GalleryFactoryTest(methodName:String=null) {
         super(methodName);
     }
@@ -29,6 +30,12 @@ public class GalleryFactoryTest extends TestCase {
 
     public function testFailure():void {
         assertTrue("Failing test", true);
+    }
+
+    public function test_set_gallery():void
+    {
+        instance.gallery = GALLERY;
+        assertEquals("Set workspaceColor", GALLERY, instance.gallery);
     }
 }
 }

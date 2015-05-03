@@ -1,6 +1,3 @@
-/**
- * Created by annov on 24.04.2015.
- */
 package com.andrei.projects.collage.gallery.view.components {
 import asunit.framework.TestCase;
 

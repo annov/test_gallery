@@ -3,6 +3,7 @@ import asunit.framework.TestCase;
 
 public class CollageLayoutTest extends TestCase {
     protected var instance:CollageLayout;
+    protected static const WIDTH:Number = 324;
     public function CollageLayoutTest(methodName:String=null) {
         super(methodName);
     }
@@ -22,6 +23,12 @@ public class CollageLayoutTest extends TestCase {
 
     public function testFailure():void {
         assertTrue("Failing test", true);
+    }
+
+    public function test_set_width():void
+    {
+        instance.width = WIDTH;
+        assertEquals("Set photos", WIDTH, instance.width);
     }
 }
 }

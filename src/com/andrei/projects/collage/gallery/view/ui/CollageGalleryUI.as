@@ -30,7 +30,9 @@ public class CollageGalleryUI extends Sprite {
         _layout.update(gallery.photos);
         for each (var image:IGalleryImage in gallery.photos) {
             // Add image
-            imageComponent = new ImageComponent(image);
+            imageComponent = new ImageComponent();
+            imageComponent.image = image;
+            imageComponent.init();
             _holder.addChild(imageComponent);
         }
         updateScrollPane();
@@ -43,7 +45,9 @@ public class CollageGalleryUI extends Sprite {
         // Set new layout
         _layout.update(gallery.photos);
         // Add image
-        imageComponent = new ImageComponent(added, false);
+        imageComponent = new ImageComponent();
+        imageComponent.image = added;
+        imageComponent.init(false);
         _holder.addChild(imageComponent);
         updateScrollPane();
         // Animate images to new position
