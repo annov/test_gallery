@@ -1,7 +1,7 @@
 package com.andrei.projects.collage.gallery.service {
 
 import com.andrei.projects.collage.gallery.model.factories.IGalleryFactory;
-import com.andrei.projects.collage.gallery.model.vo.Gallery;
+import com.andrei.projects.collage.gallery.model.vo.IGallery;
 import com.andrei.projects.collage.gallery.signals.GalleryLoadedSignal;
 import com.greensock.events.LoaderEvent;
 import com.greensock.loading.ImageLoader;
@@ -21,7 +21,7 @@ public class GalleryImageService implements IGalleryImageService {
     [Inject]
     public var galleryFactory:IGalleryFactory;
     [Inject]
-    public var galleryUpdated:GalleryLoadedSignal;
+    public var galleryLoaded:GalleryLoadedSignal;
 
     public function loadGallery():void {
         loadXML();
@@ -47,8 +47,7 @@ public class GalleryImageService implements IGalleryImageService {
         var loader:LoaderMax = new LoaderMax({onComplete: handleServiceResult, onFail: handleServiceFault});
         for each (var image:XML in input) {
             loader.append(new ImageLoader(BASE_URL + "images/" + image.@name + '.jpg', {
-                name: image.@name,
-                alpha: 0
+                name: image.@name
             }));
         }
         loader.load();
@@ -68,8 +67,8 @@ public class GalleryImageService implements IGalleryImageService {
     // On images loaded
     protected function handleServiceResult(event:LoaderEvent):void {
         var loader:LoaderMax = event.target as LoaderMax;
-        var gallery:Gallery = galleryFactory.createGallery(loader, GALLERY_SIZE);
-        galleryUpdated.dispatch(gallery);
+        var gallery:IGallery = galleryFactory.createGallery(loader, GALLERY_SIZE);
+        galleryLoaded.dispatch(gallery);
     }
 
     // On images failed

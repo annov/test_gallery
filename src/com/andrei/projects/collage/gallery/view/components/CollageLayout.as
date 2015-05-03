@@ -8,6 +8,7 @@ public class CollageLayout {
     public function CollageLayout() {
 
     }
+
     // Gallery width
     private var _width:Number;
 
@@ -118,6 +119,7 @@ public class CollageLayout {
         }
         return true;
     }
+
     // Sort indexes by image height (increase)
     // Used shell sort
     private function sortIndexes(data:Vector.<Number>, indexes:Vector.<Number>):Vector.<Number> {
